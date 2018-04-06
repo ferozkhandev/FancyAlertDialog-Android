@@ -56,6 +56,7 @@ public class FancyAlertDialog {
         private FancyAlertDialogListener pListener,nListener;
         private int pBtnColor,nBtnColor,bgColor;
         private boolean cancel;
+        private final Dialog dialog;
 
         public Builder(Activity activity){
             this.activity=activity;
@@ -124,13 +125,16 @@ public class FancyAlertDialog {
             this.cancel=cancel;
             return this;
         }
+        public void cancel()
+        {
+            dialog.dismiss();
+        }
 
         public FancyAlertDialog build(){
             TextView message1,title1;
             ImageView iconImg;
             Button nBtn,pBtn;
             View view;
-            final Dialog dialog;
             if(animation==Animation.POP)
             dialog=new Dialog(activity,R.style.PopTheme);
             else if(animation==Animation.SIDE)
